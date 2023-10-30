@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('fecha_orden')->nullable();
             $table->string('fecha_requirimiento')->nullable();
             $table->date('fecha_envio')->nullable();
-            $table->string('vio_envia')->nullable();
+            $table->string('via_envio')->nullable();
             $table->string('transporte')->nullable();
             $table->date('nombre_envio')->nullable();
             $table->date('envio_direccion')->nullable();

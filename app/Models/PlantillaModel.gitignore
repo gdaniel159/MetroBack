@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class PlantillaModel extends Model
+{
+    use HasFactory;
+
+    protected $table = '';
+
+    protected $fillable = [
+        ''
+    ];
+
+    protected $primaryKey = 'id';
+
+    protected $hidden = [
+        'created_at', 'updated_at'
+    ];
+
+    public function tabla_a_relacionar(){
+        return $this -> has_or_belong(Modelo::class,'');
+    }
+}

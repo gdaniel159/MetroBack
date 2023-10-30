@@ -17,7 +17,10 @@ return new class extends Migration
             $table->integer('cantidad')->nullable();
             $table->char('estado')->default(1); //estado por defecto activo
             
+            $table->foreignId('producto_id')->nullable()->references('id')->on('products');
+            $table->foreignId('order_id')->nullable()->references('id')->on('orders');
             
+
             $table->timestamps();
         });
     }
