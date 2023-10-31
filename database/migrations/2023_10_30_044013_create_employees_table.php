@@ -25,10 +25,10 @@ return new class extends Migration
             $table->string('region')->nullable();
             $table->string('codigo_postal')->nullable();
             $table->string('pais')->nullable();
-            $table->integer('telefono')->digits(10);
+            $table->string('telefono')->nullable();
             $table->string('extension')->nullable();
             $table->text('foto')->nullable();
-            $table->string('notas')->nullable();
+            $table->text('notas')->nullable();
             $table->string('reportes')->nullable();
             $table->string('foto_path')->nullable();
 

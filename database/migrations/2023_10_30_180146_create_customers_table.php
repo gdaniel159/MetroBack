@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string('customer_id')->nullable();
             $table->string('nombre_compañia')->nullable();
             $table->string('nombre_contacto')->nullable();
             $table->string('titulo_contacto')->nullable();
@@ -21,10 +22,8 @@ return new class extends Migration
             $table->string('region')->nullable();
             $table->string('codigo_postal')->nullable();
             $table->string('pais')->nullable();
-            $table->integer('telefono')->digits(10);
+            $table->string('telefono')->nullable();
             $table->string('fax')->nullable();
-            
-
             $table->timestamps();
         });
     }
