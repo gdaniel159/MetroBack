@@ -22,95 +22,93 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Rutas para UserC
-Route::get('UserC', [UserController::class, 'get']);
-Route::post('UserC', [UserController::class, 'store']);
-Route::put('UserC/{id}', [UserController::class, 'update']);
-Route::delete('UserC/{id}', [UserController::class, 'delete']);
+Route::get('user/get', [UserController::class, 'get']);
+Route::post('user/create', [UserController::class, 'store']);
+Route::put('user/update/{id}', [UserController::class, 'update']);
+Route::delete('user/delete/{id}', [UserController::class, 'delete']);
 
 // Rutas para CategoriesController
-Route::get('CategoriesController', [CategoriesController::class, 'get']);
-Route::post('CategoriesController', [CategoriesController::class, 'store']);
-Route::put('CategoriesController/{id}', [CategoriesController::class, 'update']);
-Route::delete('CategoriesController/{id}', [CategoriesController::class, 'delete']);
+Route::get('categories/get', [CategoriesController::class, 'get']);
+Route::post('categories/create', [CategoriesController::class, 'store']);
+Route::put('categories/udpate/{id}', [CategoriesController::class, 'update']);
+Route::delete('categories/delete/{id}', [CategoriesController::class, 'delete']);
 
 // Rutas para CategoriesController
-Route::get('CustomersController', [CustomersController::class, 'get']);
-Route::post('CustomersController', [CustomersController::class, 'store']);
-Route::put('CustomersController/{id}', [CustomersController::class, 'update']);
-Route::delete('CustomersController/{id}', [CustomersController::class, 'delete']);
+Route::get('customers/get', [CustomersController::class, 'get']);
+Route::post('customers/create', [CustomersController::class, 'store']);
+Route::put('customers/update/{id}', [CustomersController::class, 'update']);
+Route::delete('customers/delete/{id}', [CustomersController::class, 'delete']);
 
 
 // Rutas para Customer_demographicsController
-Route::get('Customer_demographicsController', [Customer_demographicsController::class, 'get']);
-Route::post('Customer_demographicsController', [Customer_demographicsController::class, 'store']);
-Route::put('Customer_demographicsController/{id}', [Customer_demographicsController::class, 'update']);
-Route::delete('Customer_demographicsController/{id}', [Customer_demographicsController::class, 'delete']);
+Route::get('customer_demographics/get', [Customer_demographicsController::class, 'get']);
+Route::post('customer_demographics/create', [Customer_demographicsController::class, 'store']);
+Route::put('customer_demographics/update/{id}', [Customer_demographicsController::class, 'update']);
+Route::delete('customer_demographics/delete/{id}', [Customer_demographicsController::class, 'delete']);
 
 // Rutas para Customer_demographicsController
-Route::get('EmployeesController', [EmployeesController::class, 'get']);
-Route::post('EmployeesController', [EmployeesController::class, 'store']);
-Route::put('EmployeesController/{id}', [EmployeesController::class, 'update']);
-Route::delete('EmployeesController/{id}', [EmployeesController::class, 'delete']);
+Route::get('employees/get', [EmployeesController::class, 'get']);
+Route::post('employees/create', [EmployeesController::class, 'store']);
+Route::put('employees/update/{id}', [EmployeesController::class, 'update']);
+Route::delete('employees/delete/{id}', [EmployeesController::class, 'delete']);
 
 // Rutas para Employees_territoriesController
-Route::get('Employees_territoriesController', [Employees_territoriesController::class, 'get']);
-Route::post('Employees_territoriesController', [Employees_territoriesController::class, 'store']);
-Route::put('Employees_territoriesController/{id}', [Employees_territoriesController::class, 'update']);
-Route::delete('Employees_territoriesController/{id}', [Employees_territoriesController::class, 'delete']);
+Route::get('employees_territories/get', [Employees_territoriesController::class, 'get']);
+Route::post('employees_territories/create', [Employees_territoriesController::class, 'store']);
+Route::put('employees_territories/update/{id}', [Employees_territoriesController::class, 'update']);
+Route::delete('employees_territories/delete/{id}', [Employees_territoriesController::class, 'delete']);
 
 // Rutas para Employees_territoriesController
-Route::get('TerritoriesController', [TerritoriesController::class, 'get']);
-Route::post('TerritoriesController', [TerritoriesController::class, 'store']);
-Route::put('TerritoriesController/{id}', [TerritoriesController::class, 'update']);
-Route::delete('TerritoriesController/{id}', [TerritoriesController::class, 'delete']);
+Route::get('territories/get', [TerritoriesController::class, 'get']);
+Route::post('territories/create', [TerritoriesController::class, 'store']);
+Route::put('territories/update/{id}', [TerritoriesController::class, 'update']);
+Route::delete('territories/delete/{id}', [TerritoriesController::class, 'delete']);
 
 
 
 // Rutas para RegionController
-Route::get('RegionController', [RegionController::class, 'get']);
-Route::post('RegionController', [RegionController::class, 'store']);
-Route::put('RegionController/{id}', [RegionController::class, 'update']);
-Route::delete('RegionController/{id}', [RegionController::class, 'delete']);
-
-
+Route::get('region/get', [RegionController::class, 'get']);
+Route::post('region/create', [RegionController::class, 'store']);
+Route::put('region/update/{id}', [RegionController::class, 'update']);
+Route::delete('region/delete/{id}', [RegionController::class, 'delete']);
 
 // Rutas para ShippersController
-Route::get('ShippersController', [ShippersController::class, 'get']);
-Route::post('ShippersController', [ShippersController::class, 'store']);
-Route::put('ShippersController/{id}', [ShippersController::class, 'update']);
-Route::delete('ShippersController/{id}', [ShippersController::class, 'delete']);
+Route::get('shippers/get', [ShippersController::class, 'get']);
+Route::post('shippers/create', [ShippersController::class, 'store']);
+Route::put('shippers/update/{id}', [ShippersController::class, 'update']);
+Route::delete('shippers/delete/{id}', [ShippersController::class, 'delete']);
 
 // Rutas para SuppliersController
-Route::get('SuppliersController', [SuppliersController::class, 'get']);
-Route::post('SuppliersController', [SuppliersController::class, 'store']);
-Route::put('SuppliersController/{id}', [SuppliersController::class, 'update']);
-Route::delete('SuppliersController/{id}', [SuppliersController::class, 'delete']);
+Route::get('suppliers/get', [SuppliersController::class, 'get']);
+Route::post('suppliers/create', [SuppliersController::class, 'store']);
+Route::put('suppliers/update/{id}', [SuppliersController::class, 'update']);
+Route::delete('suppliers/delete/{id}', [SuppliersController::class, 'delete']);
 
 // Rutas para ProductsController
-Route::get('ProductsController', [ProductsController::class, 'get']);
-Route::post('ProductsController', [ProductsController::class, 'store']);
-Route::put('ProductsController/{id}', [ProductsController::class, 'update']);
-Route::delete('ProductsController/{id}', [ProductsController::class, 'delete']);
+Route::get('products/get', [ProductsController::class, 'get']);
+Route::post('products/create', [ProductsController::class, 'store']);
+Route::put('products/update/{id}', [ProductsController::class, 'update']);
+Route::delete('products/delete/{id}', [ProductsController::class, 'delete']);
 
 
 // Rutas para OrdersController
-Route::get('OrdersController', [OrdersController::class, 'get']);
-Route::post('OrdersController', [OrdersController::class, 'store']);
-Route::put('OrdersController/{id}', [OrdersController::class, 'update']);
-Route::delete('OrdersController/{id}', [OrdersController::class, 'delete']);
+Route::get('orders/get', [OrdersController::class, 'get']);
+Route::post('orders/create', [OrdersController::class, 'store']);
+Route::put('orders/update/{id}', [OrdersController::class, 'update']);
+Route::delete('orders/delete/{id}', [OrdersController::class, 'delete']);
 
 
 // Rutas para Customer_CustomerController
-Route::get('Customer_CustomerController', [Customer_CustomerController::class, 'get']);
-Route::post('Customer_CustomerController', [Customer_CustomerController::class, 'store']);
-Route::put('Customer_CustomerController/{id}', [Customer_CustomerController::class, 'update']);
-Route::delete('Customer_CustomerController/{id}', [Customer_CustomerController::class, 'delete']);
+Route::get('customer_customer_demo/get', [Customer_CustomerController::class, 'get']);
+Route::post('customer_customer_demo/create', [Customer_CustomerController::class, 'store']);
+Route::put('customer_customer_demo/update/{id}', [Customer_CustomerController::class, 'update']);
+Route::delete('customer_customer_demo/delete/{id}', [Customer_CustomerController::class, 'delete']);
 
 // Rutas para Orders_detailsController
-Route::get('Orders_detailsController', [Orders_detailsController::class, 'get']);
-Route::post('Orders_detailsController', [Orders_detailsController::class, 'store']);
-Route::put('Orders_detailsController/{id}', [Orders_detailsController::class, 'update']);
-Route::delete('Orders_detailsController/{id}', [Orders_detailsController::class, 'delete']);
+Route::get('orders_details/get', [Orders_detailsController::class, 'get']);
+Route::post('orders_details/create', [Orders_detailsController::class, 'store']);
+Route::put('orders_details/update/{id}', [Orders_detailsController::class, 'update']);
+Route::delete('orders_details/delete/{id}', [Orders_detailsController::class, 'delete']);
 
 
 
