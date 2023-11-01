@@ -16,7 +16,7 @@ class Orders_details extends Model
         'cantidad',
         'estado',
         'producto_id',
-        'orders_id'
+        'order_id'
     ];
 
     protected $primaryKey = 'id';
@@ -26,10 +26,10 @@ class Orders_details extends Model
     ];
 
     public function products(){
-        return $this -> belongsTo(Modelo::class,'producto_id');
+        return $this -> belongsTo(Products::class,'products_id');
     }
     
     public function orders(){
-        return $this -> belongsTo(OrdersModel::class,'orders_id');
+        return $this -> belongsTo(Orders::class,'orders_id');
     }
 }

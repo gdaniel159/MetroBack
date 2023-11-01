@@ -20,7 +20,6 @@ class Products extends Model
         'unidades_orden',
         'reorden_nivel',
         'estado',
-
         'categoria_id',
         'supplier_id',
     ];
@@ -33,14 +32,14 @@ class Products extends Model
     ];
 
     public function categories(){
-        return $this -> belongsTo(CategoriesModel::class,'categoria_id');
+        return $this -> belongsTo(Categories::class,'categoria_id');
     }
     
     public function suppliers(){
-        return $this -> belongsTo(SuppliersModel::class,'supplier_id');
+        return $this -> belongsTo(Suppliers::class,'supplier_id');
     }
 
     public function order_details(){
-        return $this ->hasMany(Orders_detailsModel::class);
+        return $this ->hasMany(Orders_details::class);
     }
 }

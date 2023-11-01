@@ -29,7 +29,7 @@ class Territories extends Model
 
     // muchos a unos
     public function region(){
-        return $this -> belongsTo(RegionModel::class,'region_id');
+        return $this -> belongsTo(Region::class,'region_id');
     }
 }
 

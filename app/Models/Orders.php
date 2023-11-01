@@ -33,18 +33,18 @@ class Orders extends Model
     protected $primaryKey = 'id';
 
     public function shippers(){
-        return $this -> hasMany(ShippersModel::class);
+        return $this -> hasMany(Shippers::class);
     }
 
     public function customers(){
-        return $this -> belongsTo(CustomersModel::class, 'customer_id');
+        return $this -> belongsTo(Customers::class, 'customer_id');
     }
 
     public function employees(){
-        return $this -> belongsTo(EmployeesModel::class, 'employee_id');
+        return $this -> belongsTo(Employees::class, 'employee_id');
     }
     public function orders_details(){
-        return $this -> hasMany(Ordwe_detailrModel::class);
+        return $this -> hasMany(Orders_details::class);
     }
   
 }

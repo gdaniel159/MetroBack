@@ -23,6 +23,6 @@ class Employees_territories extends Model
     protected $primaryKey = 'id';
 
     public function employees(){
-        return $this -> belongsTo(EmployeesModel::class, 'employees_id');
+        return $this -> belongsTo(Employees::class, 'employees_id');
     }
 }

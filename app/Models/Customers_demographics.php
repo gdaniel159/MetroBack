@@ -22,6 +22,6 @@ class Customers_demographics extends Model
     protected $primaryKey = 'id';
 
     public function customer_customer_demo(){
-        return $this -> hasMany(Customer_CustomerModel::class,'');
+        return $this -> hasMany(Customer_Customer::class,'');
     }
 }

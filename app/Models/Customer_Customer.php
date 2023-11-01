@@ -23,9 +23,9 @@ class Customer_Customer extends Model
     ];
 
     public function customer_demographics(){
-        return $this -> belongsTo(Customer_demographicsModel::class, 'customer_type_id');
+        return $this -> belongsTo(Customer_demographics::class, 'customer_typer_id');
     }
     public function customers(){
-        return $this -> belongsTo(CustomersModel::class, 'customer_id');
+        return $this -> belongsTo(Customers::class, 'customer_id');
     }
 }

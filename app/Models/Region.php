@@ -27,6 +27,6 @@ class Region extends Model
 
     // uno a muchoss
     public function territories(){
-        return $this ->hasMany(TerritoriesModel::class);
+        return $this ->hasMany(Territories::class);
     }
 }

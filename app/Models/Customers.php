@@ -32,6 +32,6 @@ class Customers extends Model
 
     public function customers_customers_demo()
     {
-        return $this->hasMany(Customer_CustomerModel::class);
+        return $this->hasMany(Customer_Customer::class);
     }
 }

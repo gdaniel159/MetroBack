@@ -24,6 +24,6 @@ class Shippers extends Model
 
     public function orders()
     {
-        return $this->hasMany(OrdersModel::class);
+        return $this->hasMany(Orders::class);
     }
 }

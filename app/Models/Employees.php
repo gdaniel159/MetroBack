@@ -32,8 +32,8 @@ class Employees extends Model
 
     protected $primaryKey = 'id';
 
-    public function employees_territories(){
-        return $this->hasMany(Employees_territoriesModel::class);
+    public function employees_territories()
+    {
+        return $this->hasMany(Employees_territories::class);
     }
-
 }
