@@ -110,7 +110,9 @@ Route::post('orders_details/create', [Orders_detailsController::class, 'store'])
 Route::put('orders_details/update/{id}', [Orders_detailsController::class, 'update']);
 Route::delete('orders_details/delete/{id}', [Orders_detailsController::class, 'delete']);
 
+// Route Login
 
+Route::post('user/login', [UserController::class, 'login']);
 
 
 
