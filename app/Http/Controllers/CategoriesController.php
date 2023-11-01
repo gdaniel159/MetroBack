@@ -69,7 +69,7 @@ class CategoriesController extends Controller
                 return response()->json(['error' => 'Categoría no encontrada'], 404);
             }
             // Verificar si hay productos asociados a esta categoría
-            $productsCount = Products::where('category_id', $id)->count();
+            $productsCount = Products::where('categoria_id', $id)->count();
             if ($productsCount > 0) {
                 return response()->json(['error' => 'No se puede eliminar la categoría. Tiene productos asociados.'], 400);
             }
