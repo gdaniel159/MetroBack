@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Orders_detailsModel;
+use App\Models\Orders_details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class Orders_detailsController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $ordersDetails = Orders_detailsModel::with('products', 'orders')->get();
+        $ordersDetails = Orders_details::with('products', 'orders')->get();
         return response()->json($ordersDetails);
     }
 
@@ -27,7 +27,7 @@ class Orders_detailsController extends Controller
                 'orders_id' => 'required',
             ]);
 
-            $orderDetails = Orders_detailsModel::create($request->all());
+            $orderDetails = Orders_details::create($request->all());
             DB::commit();
             return response()->json(['message' => 'Detalle de orden creado correctamente'], 201);
         } catch (\Exception $e) {
@@ -41,7 +41,7 @@ class Orders_detailsController extends Controller
     {
         DB::beginTransaction();
         try {
-            $orderDetails = Orders_detailsModel::find($id);
+            $orderDetails = Orders_details::find($id);
             if (!$orderDetails) {
                 return response()->json(['error' => 'Detalle de orden no encontrado'], 404);
             }
@@ -67,7 +67,7 @@ class Orders_detailsController extends Controller
     {
         DB::beginTransaction();
         try {
-            $orderDetails = Orders_detailsModel::find($id);
+            $orderDetails = Orders_details::find($id);
             if (!$orderDetails) {
                 return response()->json(['error' => 'Detalle de orden no encontrado'], 404);
             }

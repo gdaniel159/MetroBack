@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TerritoriesModel;
+use App\Models\Territories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class TerritoriesController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $territories = TerritoriesModel::with('region')->get();
+        $territories = Territories::with('region')->get();
         return response()->json($territories);
     }
 
@@ -26,7 +26,7 @@ class TerritoriesController extends Controller
                 
             ]);
 
-            $territory = TerritoriesModel::create($request->all());
+            $territory = Territories::create($request->all());
             DB::commit();
             return response()->json(['message' => 'Territorio creado correctamente'], 201);
         } catch (\Exception $e) {
@@ -40,7 +40,7 @@ class TerritoriesController extends Controller
     {
         DB::beginTransaction();
         try {
-            $territory = TerritoriesModel::find($id);
+            $territory = Territories::find($id);
             if (!$territory) {
                 return response()->json(['error' => 'Territorio no encontrado'], 404);
             }
@@ -65,7 +65,7 @@ class TerritoriesController extends Controller
     {
         DB::beginTransaction();
         try {
-            $territory = TerritoriesModel::find($id);
+            $territory = Territories::find($id);
             if (!$territory) {
                 return response()->json(['error' => 'Territorio no encontrado'], 404);
             }

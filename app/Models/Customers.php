@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PlantillaModel extends Model
+class Customers extends Model
 {
     use HasFactory;
 
-    protected $table = '';
+    protected $table = 'customers';
 
     protected $fillable = [
         'nombre_compañia',
@@ -20,16 +20,18 @@ class PlantillaModel extends Model
         'region',
         'codigo_postal',
         'pais',
-        'telefono'
+        'telefono',
+        'fax',
     ];
-    
+
     protected $primaryKey = 'id';
 
     protected $hidden = [
-        'created_at', 'updated_at', 'fax','pagina_principal'
+        'created_at', 'updated_at','fax'
     ];
 
-    public function products(){
-        return $this -> hasMany(ProductsModel::class);
+    public function customers_customers_demo()
+    {
+        return $this->hasMany(Customer_CustomerModel::class);
     }
 }

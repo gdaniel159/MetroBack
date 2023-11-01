@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Models\Customers_demographics;
 use App\Models\Customers_demographicsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -8,7 +10,7 @@ class Customer_demographicsController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $customerDemographics = Customers_demographicsModel::with('customer_customer_demo')->get();
+        $customerDemographics = Customers_demographics::with('customer_customer_demo')->get();
         return response()->json($customerDemographics);
     }
 
@@ -17,7 +19,7 @@ class Customer_demographicsController extends Controller
     {
         DB::beginTransaction();
         try {
-            $customerDemographics = Customers_demographicsModel::create([
+            $customerDemographics = Customers_demographics::create([
                 'cliente_descripcion' => $request->cliente_descripcion
             ]);
             DB::commit();
@@ -33,7 +35,7 @@ class Customer_demographicsController extends Controller
     {
         DB::beginTransaction();
         try {
-            $customerDemographics = Customers_demographicsModel::find($id);
+            $customerDemographics = Customers_demographics::find($id);
             if (!$customerDemographics) {
                 return response()->json(['error' => 'Datos de clientes demographics no encontrados'], 404);
             }
@@ -53,7 +55,7 @@ class Customer_demographicsController extends Controller
     {
         DB::beginTransaction();
         try {
-            $customerDemographics = Customers_demographicsModel::find($id);
+            $customerDemographics = Customers_demographics::find($id);
             if (!$customerDemographics) {
                 return response()->json(['error' => 'Datos de clientes demographics no encontrados'], 404);
             }

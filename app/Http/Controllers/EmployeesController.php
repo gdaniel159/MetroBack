@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EmployeesModel;
+use App\Models\Employees;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class EmployeesController extends Controller
     // GET - Obtenemos todos los registros de la base de datos con territorios asociados
     public function get()
     {
-        $employees = EmployeesModel::with('employees_territories')->get();
+        $employees = Employees::with('employees_territories')->get();
         return response()->json($employees);
     }
 
@@ -20,7 +20,7 @@ class EmployeesController extends Controller
     {
         DB::beginTransaction();
         try {
-            $employee = EmployeesModel::create($request->all());
+            $employee = Employees::create($request->all());
             DB::commit();
             return response()->json(['message' => 'Empleado creado correctamente'], 201);
         } catch (\Exception $e) {
@@ -34,7 +34,7 @@ class EmployeesController extends Controller
     {
         DB::beginTransaction();
         try {
-            $employee = EmployeesModel::find($id);
+            $employee = Employees::find($id);
             if (!$employee) {
                 return response()->json(['error' => 'Empleado no encontrado'], 404);
             }
@@ -52,7 +52,7 @@ class EmployeesController extends Controller
     {
         DB::beginTransaction();
         try {
-            $employee = EmployeesModel::find($id);
+            $employee = Employees::find($id);
             if (!$employee) {
                 return response()->json(['error' => 'Empleado no encontrado'], 404);
             }

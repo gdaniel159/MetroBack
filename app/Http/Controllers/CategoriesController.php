@@ -1,7 +1,8 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\CategoriesModel;
-use App\Models\ProductsModel;
+
+use App\Models\Categories;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,7 @@ class CategoriesController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $categories = CategoriesModel::all();
+        $categories = Categories::all();
         return response()->json($categories);
     }
     // POST - Guardar datos
@@ -18,7 +19,7 @@ class CategoriesController extends Controller
     {
         DB::beginTransaction();
         try {
-            $category = CategoriesModel::create([
+            $category = Categories::create([
                 'nombre_categoria' => $request->nombre_categoria,
                 'descripcion' => $request->descripcion,
                 'foto' => $request->foto
@@ -36,7 +37,7 @@ class CategoriesController extends Controller
     {
         DB::beginTransaction();
         try {
-            $category = CategoriesModel::find($id);
+            $category = Categories::find($id);
             if (!$category) {
                 return response()->json(['error' => 'Categoría no encontrada'], 404);
             }
@@ -63,12 +64,12 @@ class CategoriesController extends Controller
     {
         DB::beginTransaction();
         try {
-            $category = CategoriesModel::find($id);
+            $category = Categories::find($id);
             if (!$category) {
                 return response()->json(['error' => 'Categoría no encontrada'], 404);
             }
             // Verificar si hay productos asociados a esta categoría
-            $productsCount = ProductsModel::where('category_id', $id)->count();
+            $productsCount = Products::where('category_id', $id)->count();
             if ($productsCount > 0) {
                 return response()->json(['error' => 'No se puede eliminar la categoría. Tiene productos asociados.'], 400);
             }

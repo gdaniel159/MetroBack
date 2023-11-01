@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employees_territoriesModel extends Model
+class Employees_territories extends Model
 {
     use HasFactory;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer_CustomerModel;
+use App\Models\Customer_Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class Customer_CustomerController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $customerCustomers = Customer_CustomerModel::with('customer_demographics', 'customers')->get();
+        $customerCustomers = Customer_Customer::with('customer_demographics', 'customers')->get();
         return response()->json($customerCustomers);
     }
 
@@ -25,7 +25,7 @@ class Customer_CustomerController extends Controller
                 'customer_id' => 'required',
             ]);
 
-            $customerCustomer = Customer_CustomerModel::create($request->all());
+            $customerCustomer = Customer_Customer::create($request->all());
             DB::commit();
             return response()->json(['message' => 'Relación cliente creada correctamente'], 201);
         } catch (\Exception $e) {
@@ -39,7 +39,7 @@ class Customer_CustomerController extends Controller
     {
         DB::beginTransaction();
         try {
-            $customerCustomer = Customer_CustomerModel::find($id);
+            $customerCustomer = Customer_Customer::find($id);
             if (!$customerCustomer) {
                 return response()->json(['error' => 'Relación cliente no encontrada'], 404);
             }
@@ -63,7 +63,7 @@ class Customer_CustomerController extends Controller
     {
         DB::beginTransaction();
         try {
-            $customerCustomer = Customer_CustomerModel::find($id);
+            $customerCustomer = Customer_Customer::find($id);
             if (!$customerCustomer) {
                 return response()->json(['error' => 'Relación cliente no encontrada'], 404);
             }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrdersModel;
+use App\Models\Orders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class OrdersController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $orders = OrdersModel::with('shippers', 'customers', 'employees', 'orders_details')->get();
+        $orders = Orders::with('shippers', 'customers', 'employees', 'orders_details')->get();
         return response()->json($orders);
     }
 
@@ -36,7 +36,7 @@ class OrdersController extends Controller
                 // Otros campos necesarios para crear la orden
             ]);
 
-            $order = OrdersModel::create($request->all());
+            $order = Orders::create($request->all());
             DB::commit();
             return response()->json(['message' => 'Orden creada correctamente'], 201);
         } catch (\Exception $e) {
@@ -50,7 +50,7 @@ class OrdersController extends Controller
     {
         DB::beginTransaction();
         try {
-            $order = OrdersModel::find($id);
+            $order = Orders::find($id);
             if (!$order) {
                 return response()->json(['error' => 'Orden no encontrada'], 404);
             }
@@ -85,7 +85,7 @@ class OrdersController extends Controller
     {
         DB::beginTransaction();
         try {
-            $order = OrdersModel::find($id);
+            $order = Orders::find($id);
             if (!$order) {
                 return response()->json(['error' => 'Orden no encontrada'], 404);
             }

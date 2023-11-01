@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CustomersModel extends Model
+class Suppliers extends Model
 {
     use HasFactory;
 
-    protected $table = 'customers';
+    protected $table = '';
 
     protected $fillable = [
         'nombre_compañia',
@@ -20,18 +20,16 @@ class CustomersModel extends Model
         'region',
         'codigo_postal',
         'pais',
-        'telefono',
-        'fax',
+        'telefono'
     ];
-
+    
     protected $primaryKey = 'id';
 
     protected $hidden = [
-        'created_at', 'updated_at','fax'
+        'created_at', 'updated_at', 'fax','pagina_principal'
     ];
 
-    public function customers_customers_demo()
-    {
-        return $this->hasMany(Customer_CustomerModel::class);
+    public function products(){
+        return $this -> hasMany(ProductsModel::class);
     }
 }

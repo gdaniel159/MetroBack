@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductsModel;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class ProductsController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $products = ProductsModel::with('categories', 'suppliers', 'order_details')->get();
+        $products = Products::with('categories', 'suppliers', 'order_details')->get();
         return response()->json($products);
     }
 
@@ -29,7 +29,7 @@ class ProductsController extends Controller
                 // Otros campos necesarios para crear el producto
             ]);
 
-            $product = ProductsModel::create($request->all());
+            $product = Products::create($request->all());
             DB::commit();
             return response()->json(['message' => 'Producto creado correctamente'], 201);
         } catch (\Exception $e) {
@@ -43,7 +43,7 @@ class ProductsController extends Controller
     {
         DB::beginTransaction();
         try {
-            $product = ProductsModel::find($id);
+            $product = Products::find($id);
             if (!$product) {
                 return response()->json(['error' => 'Producto no encontrado'], 404);
             }
@@ -71,7 +71,7 @@ class ProductsController extends Controller
     {
         DB::beginTransaction();
         try {
-            $product = ProductsModel::find($id);
+            $product = Products::find($id);
             if (!$product) {
                 return response()->json(['error' => 'Producto no encontrado'], 404);
             }

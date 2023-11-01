@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RegionModel;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class RegionController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $regions = RegionModel::with('territories')->get();
+        $regions = Region::with('territories')->get();
         return response()->json($regions);
     }
 
@@ -25,7 +25,7 @@ class RegionController extends Controller
                 // Otros campos necesarios para crear la región
             ]);
 
-            $region = RegionModel::create($request->all());
+            $region = Region::create($request->all());
             DB::commit();
             return response()->json(['message' => 'Región creada correctamente'], 201);
         } catch (\Exception $e) {
@@ -39,7 +39,7 @@ class RegionController extends Controller
     {
         DB::beginTransaction();
         try {
-            $region = RegionModel::find($id);
+            $region = Region::find($id);
             if (!$region) {
                 return response()->json(['error' => 'Región no encontrada'], 404);
             }
@@ -63,7 +63,7 @@ class RegionController extends Controller
     {
         DB::beginTransaction();
         try {
-            $region = RegionModel::find($id);
+            $region = Region::find($id);
             if (!$region) {
                 return response()->json(['error' => 'Región no encontrada'], 404);
             }

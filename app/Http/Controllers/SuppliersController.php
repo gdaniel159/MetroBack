@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SuppliersModel;
+use App\Models\Suppliers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class SuppliersController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $suppliers = SuppliersModel::with('products')->get();
+        $suppliers = Suppliers::with('products')->get();
         return response()->json($suppliers);
     }
 
@@ -26,7 +26,7 @@ class SuppliersController extends Controller
                 // Otros campos necesarios para crear el proveedor
             ]);
 
-            $supplier = SuppliersModel::create($request->all());
+            $supplier = Suppliers::create($request->all());
             DB::commit();
             return response()->json(['message' => 'Proveedor creado correctamente'], 201);
         } catch (\Exception $e) {
@@ -40,7 +40,7 @@ class SuppliersController extends Controller
     {
         DB::beginTransaction();
         try {
-            $supplier = SuppliersModel::find($id);
+            $supplier = Suppliers::find($id);
             if (!$supplier) {
                 return response()->json(['error' => 'Proveedor no encontrado'], 404);
             }
@@ -65,7 +65,7 @@ class SuppliersController extends Controller
     {
         DB::beginTransaction();
         try {
-            $supplier = SuppliersModel::find($id);
+            $supplier = Suppliers::find($id);
             if (!$supplier) {
                 return response()->json(['error' => 'Proveedor no encontrado'], 404);
             }

@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PlantillaModel extends Model
+class Categories extends Model
 {
     use HasFactory;
 
-    protected $table = '';
+    protected $table = 'categories';
 
     protected $fillable = [
-        ''
+        'nombre_categoria',
+        'descripcion',
+        'foto'
     ];
 
     protected $primaryKey = 'id';
@@ -21,7 +23,7 @@ class PlantillaModel extends Model
         'created_at', 'updated_at'
     ];
 
-    public function tabla_a_relacionar(){
-        return $this -> has_or_belong(Modelo::class,'');
+    public function products(){
+        return $this -> hasMany(ProductsModel::class);
     }
 }

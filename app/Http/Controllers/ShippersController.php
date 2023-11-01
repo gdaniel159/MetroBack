@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ShippersModel;
+use App\Models\Shippers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +11,7 @@ class ShippersController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $shippers = ShippersModel::with('orders')->get();
+        $shippers = Shippers::with('orders')->get();
         return response()->json($shippers);
     }
 
@@ -26,7 +26,7 @@ class ShippersController extends Controller
                 // Otros campos necesarios para crear el transportista
             ]);
 
-            $shipper = ShippersModel::create($request->all());
+            $shipper = Shippers::create($request->all());
             DB::commit();
             return response()->json(['message' => 'Transportista creado correctamente'], 201);
         } catch (\Exception $e) {
@@ -40,7 +40,7 @@ class ShippersController extends Controller
     {
         DB::beginTransaction();
         try {
-            $shipper = ShippersModel::find($id);
+            $shipper = Shippers::find($id);
             if (!$shipper) {
                 return response()->json(['error' => 'Transportista no encontrado'], 404);
             }
@@ -65,7 +65,7 @@ class ShippersController extends Controller
     {
         DB::beginTransaction();
         try {
-            $shipper = ShippersModel::find($id);
+            $shipper = Shippers::find($id);
             if (!$shipper) {
                 return response()->json(['error' => 'Transportista no encontrado'], 404);
             }
