@@ -9,7 +9,7 @@ class Customers_demographics extends Model
 {
     use HasFactory;
 
-    protected $table = 'customers_demographics';
+    protected $table = 'customer_demographics';
 
     protected $fillable = [
         'cliente_descripcion'

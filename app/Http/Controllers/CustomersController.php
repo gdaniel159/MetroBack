@@ -24,7 +24,7 @@ class CustomersController extends Controller
             // Crear registros relacionados en Customer_CustomerModel
             $customerCustomer = new Customer_Customer();
             $customerCustomer->customer_id = $customer->id;
-            $customerCustomer->campo_relacionado = $request->campo_relacionado; // Ajusta esto según tus campos
+            $customerCustomer->customer_typer_id = $request->campo_relacionado;
             $customerCustomer->save();
 
             DB::commit();
@@ -49,7 +49,7 @@ class CustomersController extends Controller
             // Actualizar registros relacionados en Customer_CustomerModel
             $customerCustomer = Customer_Customer::where('customer_id', $customer->id)->first();
             if ($customerCustomer) {
-                $customerCustomer->campo_relacionado = $request->campo_relacionado; // Ajusta esto según tus campos
+                $customerCustomer->customer_typer_id = $request->campo_relacionado; // Ajusta esto según tus campos
                 $customerCustomer->save();
             }
 
