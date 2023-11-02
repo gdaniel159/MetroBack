@@ -9,7 +9,7 @@ class Employees_territories extends Model
 {
     use HasFactory;
 
-    protected $table = 'employes_territories';
+    protected $table = 'employee_territories';
 
     protected $fillable = [
         'employees_id',

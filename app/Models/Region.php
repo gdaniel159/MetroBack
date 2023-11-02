@@ -10,7 +10,7 @@ class Region extends Model
     use HasFactory;
 
     // nombre de tabla
-    protected $table = 'region';
+    protected $table = 'regiones';
 
     // campos a utilizar
     protected $fillable = array(
