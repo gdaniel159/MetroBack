@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('territories', function (Blueprint $table) {
             $table->id();
-
-            $table->string('territory_id')->nullable();
             $table->string('descripcion')->nullable();
             $table->foreignId('region_id')->nullable()->references('id')->on('regiones');
-
             $table->timestamps();
         });
     }

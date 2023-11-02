@@ -11,7 +11,7 @@ class EmployeesController extends Controller
     // GET - Obtenemos todos los registros de la base de datos con territorios asociados
     public function get()
     {
-        $employees = Employees::with('employees_territories')->get();
+        $employees = Employees::all();
         return response()->json($employees);
     }
 

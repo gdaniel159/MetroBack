@@ -12,17 +12,17 @@ class Employees_territories extends Model
     protected $table = 'employee_territories';
 
     protected $fillable = [
-        'employees_id',
-        'territory_id'
+        'employees_id'
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at', 
+        'created_at', 'updated_at',
     ];
 
     protected $primaryKey = 'id';
 
-    public function employees(){
-        return $this -> belongsTo(Employees::class, 'employees_id');
+    public function employees()
+    {
+        return $this->belongsTo(Employees::class, 'employee_id');
     }
 }
