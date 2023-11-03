@@ -11,7 +11,7 @@ class SuppliersController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $suppliers = Suppliers::with('products')->get();
+        $suppliers = Suppliers::all();
         return response()->json($suppliers);
     }
 
@@ -20,18 +20,24 @@ class SuppliersController extends Controller
     {
         DB::beginTransaction();
         try {
-            $request->validate([
-                'nombre_compañia' => 'required',
-                'nombre_contacto' => 'required',
-                // Otros campos necesarios para crear el proveedor
+            $supplier = Suppliers::updateOrcreate([
+                'nombre_compañia' => $request->nombre_compañia,
+                'nombre_contacto' => $request->nombre_contacto,
+                'titulo_contacto' => $request->titulo_contacto,
+                'direccion' => $request->direccion,
+                'cuidad' => $request->ciudad,
+                'region' => $request->region,
+                'codigo_postal' => $request->codigo_postal,
+                'pais' => $request->pais,
+                'telefono' => $request->telefono,
+                'fax' => $request->fax,
+                'pagina_principal' => $request->pagina_principal
             ]);
-
-            $supplier = Suppliers::create($request->all());
             DB::commit();
-            return response()->json(['message' => 'Proveedor creado correctamente'], 201);
+            return response()->json(["resp" => "Supplier creado correctamente"], 200);
         } catch (\Exception $e) {
             DB::rollback();
-            return response()->json(['error' => 'Error al crear el proveedor: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Error al crear el supplier: ' . $e->getMessage()], 500);
         }
     }
 
