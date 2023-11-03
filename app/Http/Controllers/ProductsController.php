@@ -13,7 +13,7 @@ class ProductsController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $products = Products::with('categories', 'suppliers', 'order_details')->get();
+        $products = Products::with('categories','suppliers')->get();
         return response()->json($products);
     }
 
@@ -32,8 +32,8 @@ class ProductsController extends Controller
 
             $products = Products::updateOrcreate([
                 'nombre_producto' => $request->nombre_producto,
-                'categoria_id' => $categoria->nombre_categoria,
-                'supplier_id' => $supplier->nombre_compañia,
+                'categoria_id' => $categoria->id,
+                'supplier_id' => $supplier->id,
                 'cantidad_unidad' => $request->cantidad_unidad,
                 'precio_unidad' => $request->precio_unidad,
                 'unidades_stock' => $request->unidades_stock,

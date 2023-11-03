@@ -19,7 +19,7 @@ class OrdersController extends Controller
     // POST - Guardar datos
     public function store(Request $request)
     {
-    
+        
     }
 
     // PUT - Actualizar datos
@@ -101,7 +101,7 @@ class OrdersController extends Controller
 
             DB::rollback();
             return response()->json(['error' => 'Error al eliminar la orden: ' . $e->getMessage()], 500);
-            
+
         }
     }
 }

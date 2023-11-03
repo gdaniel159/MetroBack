@@ -22,14 +22,15 @@ class Suppliers extends Model
         'pais',
         'telefono'
     ];
-    
+
     protected $primaryKey = 'id';
 
     protected $hidden = [
-        'created_at', 'updated_at', 'fax','pagina_principal'
+        'created_at', 'updated_at', 'fax', 'pagina_principal'
     ];
 
-    public function products(){
-        return $this -> hasMany(Products::class);
+    public function products()
+    {
+        return $this->hasMany(Products::class);
     }
 }

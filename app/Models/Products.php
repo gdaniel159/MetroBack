@@ -23,7 +23,7 @@ class Products extends Model
         'categoria_id',
         'supplier_id',
     ];
-    
+
 
     protected $primaryKey = 'id';
 
@@ -31,15 +31,18 @@ class Products extends Model
         'created_at', 'updated_at'
     ];
 
-    public function categories(){
-        return $this -> belongsTo(Categories::class,'categories_id');
-    }
-    
-    public function suppliers(){
-        return $this -> belongsTo(Suppliers::class,'supplier_id');
+    public function categories()
+    {
+        return $this->belongsTo(Categories::class, 'categoria_id');
     }
 
-    public function order_details(){
-        return $this ->hasMany(Orders_details::class);
+    public function suppliers()
+    {
+        return $this->belongsTo(Suppliers::class, 'supplier_id');
+    }
+
+    public function order_details()
+    {
+        return $this->hasMany(Orders_details::class);
     }
 }
