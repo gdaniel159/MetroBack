@@ -16,6 +16,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\Customer_CustomerController;
 use App\Http\Controllers\Orders_detailsController;
+use App\Models\Employees;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -51,6 +52,9 @@ Route::get('employees/get', [EmployeesController::class, 'get']);
 Route::post('employees/create', [EmployeesController::class, 'store']);
 Route::put('employees/update/{id}', [EmployeesController::class, 'update']);
 Route::delete('employees/delete/{id}', [EmployeesController::class, 'delete']);
+Route::get('employeeid/getEmployee/{id}', [EmployeesController::class, 'getEmployeexID']);
+
+
 
 // Rutas para Employees_territoriesController
 Route::get('employees_territories/get', [Employees_territoriesController::class, 'get']);
