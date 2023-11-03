@@ -15,6 +15,16 @@ class EmployeesController extends Controller
         return response()->json($employees);
     }
 
+    public function getEmployeexID($id)
+    {
+        $employee = Employees::find($id);
+
+        if(!$employee){
+            return response()-> json(['error' => 'Empleado no ubicado xp'], 404);
+        }
+        return response ()->json($employee);
+    }
+
     // POST - Guardar datos
     public function store(Request $request)
     {
