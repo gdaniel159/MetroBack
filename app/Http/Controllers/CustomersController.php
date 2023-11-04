@@ -14,6 +14,12 @@ class CustomersController extends Controller
         $customers = Customers::all();
         return response()->json($customers);
     }
+
+    public function getCustomer($id) {
+        $customer = Customers::find($id);
+        return response()->json($customer);
+    }
+
     // POST - Guardar datos
     public function store(Request $request)
     {

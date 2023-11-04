@@ -13,19 +13,16 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-
-            $table->date('fecha_orden')->nullable();
+            $table->string('fecha_orden')->nullable();
             $table->string('fecha_requerimiento')->nullable();
-            $table->date('fecha_envio')->nullable();
+            $table->string('fecha_envio')->nullable();
             $table->string('via_envio')->nullable();
             $table->string('transporte')->nullable();
-            $table->date('nombre_envio')->nullable();
-            $table->date('envio_direccion')->nullable();
-            $table->date('envio_region')->nullable();
-            $table->date('envio_codigo_postal')->nullable();
-            $table->date('envio_pais')->nullable();
-
-
+            $table->string('nombre_envio')->nullable();
+            $table->string('envio_direccion')->nullable();
+            $table->string('envio_region')->nullable();
+            $table->string('envio_codigo_postal')->nullable();
+            $table->string('envio_pais')->nullable();
             $table->foreignId('customers_id')->nullable()->references('id')->on('customers');
             $table->foreignId('employee_id')->nullable()->references('id')->on('employees');
             $table->timestamps();

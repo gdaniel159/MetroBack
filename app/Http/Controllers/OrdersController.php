@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customers;
+use App\Models\Employees;
 use App\Models\Orders;
 use App\Models\Orders_details;
 use Illuminate\Http\Request;
@@ -12,14 +14,44 @@ class OrdersController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $orders = Orders::with('shippers', 'customers', 'employees', 'orders_details')->get();
+        $orders = Orders::with('customers','employees')->get();
         return response()->json($orders);
     }
 
     // POST - Guardar datos
     public function store(Request $request)
     {
-        
+        DB::beginTransaction();
+
+        try {
+
+            $customer = Customers::find($request->customer_id);
+            $employee = Employees::find($request->employee_id);
+
+            $orders = Orders::updateOrcreate([
+                'fecha_orden' => $request->fecha_orden,
+                'fecha_requerimiento' => $request->fecha_requerimiento,
+                'fecha_envio' => $request->fecha_envio,
+                'via_envio' => $request->via_envio,
+                'transporte' => $request->transporte,
+                'nombre_envio' => $request->nombre_envio,
+                'envio_direccion' => $request->envio_direccion,
+                'envio_codigo_postal' => $request->envio_codigo_postal,
+                'envio_pais' => $request->envio_pais,
+                'customer_id' => $customer->id,
+                'employee_id' => $employee->id,
+            ]);
+
+            DB::commit();
+
+            return response()->json(['message' => 'Orden creada correctamente'], 200);
+            
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            return response()->json(['error' => 'Error al actualizar la orden: ' . $e->getMessage()], 500);
+
+        }
     }
 
     // PUT - Actualizar datos

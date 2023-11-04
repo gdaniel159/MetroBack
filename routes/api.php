@@ -36,6 +36,7 @@ Route::delete('categories/delete/{id}', [CategoriesController::class, 'delete'])
 
 // Rutas para CategoriesController
 Route::get('customers/get', [CustomersController::class, 'get']);
+Route::get('customers/get/{id}', [CustomersController::class, 'getCustomer']);
 Route::post('customers/create', [CustomersController::class, 'store']);
 Route::put('customers/update/{id}', [CustomersController::class, 'update']);
 Route::delete('customers/delete/{id}', [CustomersController::class, 'delete']);

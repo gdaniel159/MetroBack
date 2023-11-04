@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orders;
 use App\Models\Orders_details;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,18 +20,29 @@ class Orders_detailsController extends Controller
     // POST - Guardar datos
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        try {
-            $request->validate([
-                'precio_unitario' => 'required',
-                'cantidad' => 'required',
-                'producto_id' => 'required',
-                'orders_id' => 'required',
-            ]);
 
-            $orderDetails = Orders_details::create($request->all());
-            DB::commit();
-            return response()->json(['message' => 'Detalle de orden creado correctamente'], 201);
+        DB::beginTransaction();
+
+        try {
+
+            $producto = Products::find($request->producto_id);
+            $order = Orders::find($request->order_id);
+
+            if ($producto && $order) {
+
+                $orderDetails = Orders_details::updateOrcreate([
+                    'precio_unitario' => $request->precio_unitario,
+                    'cantidad' => $request->cantidad,
+                    'producto_id' => $producto->id,
+                    'orders_id' => $order->id,
+                ]);
+
+                DB::commit();
+
+                return response()->json(['message' => 'Detalle de orden creado correctamente'], 201);
+            } else {
+                return response()->json(['message' => 'Error al crear el detalle de la orden, orden o producto inexistente']);
+            }
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json(['error' => 'Error al crear el detalle de orden: ' . $e->getMessage()], 500);

@@ -27,24 +27,27 @@ class Orders extends Model
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at', 
+        'created_at', 'updated_at',
     ];
 
     protected $primaryKey = 'id';
 
-    public function shippers(){
-        return $this -> hasMany(Shippers::class);
+    public function shippers()
+    {
+        return $this->hasMany(Shippers::class);
     }
 
-    public function customers(){
-        return $this -> belongsTo(Customers::class, 'customer_id');
+    public function customers()
+    {
+        return $this->belongsTo(Customers::class, 'customers_id');
     }
 
-    public function employees(){
-        return $this -> belongsTo(Employees::class, 'employee_id');
+    public function employees()
+    {
+        return $this->belongsTo(Employees::class, 'employee_id');
     }
-    public function orders_details(){
-        return $this -> hasMany(Orders_details::class);
+    public function orders_details()
+    {
+        return $this->hasMany(Orders_details::class);
     }
-  
 }
