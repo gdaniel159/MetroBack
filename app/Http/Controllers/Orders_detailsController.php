@@ -25,24 +25,36 @@ class Orders_detailsController extends Controller
 
         try {
 
-            $producto = Products::find($request->producto_id);
-            $order = Orders::find($request->order_id);
+            // $producto = Products::find($request->producto_id);
+            // $order = Orders::find($request->order_id);
 
-            if ($producto && $order) {
+            // if ($producto && $order) {
 
-                $orderDetails = Orders_details::updateOrcreate([
-                    'precio_unitario' => $request->precio_unitario,
-                    'cantidad' => $request->cantidad,
-                    'producto_id' => $producto->id,
-                    'orders_id' => $order->id,
-                ]);
+            //     $orderDetails = Orders_details::updateOrcreate([
+            //         'precio_unitario' => $request->precio_unitario,
+            //         'cantidad' => $request->cantidad,
+            //         'producto_id' => null,
+            //         'orders_id' => null,
+            //     ]);
 
-                DB::commit();
+            //     DB::commit();
 
-                return response()->json(['message' => 'Detalle de orden creado correctamente'], 201);
-            } else {
-                return response()->json(['message' => 'Error al crear el detalle de la orden, orden o producto inexistente']);
-            }
+            //     return response()->json(['message' => 'Detalle de orden creado correctamente'], 201);
+            // } else {
+            //     return response()->json(['message' => 'Error al crear el detalle de la orden, orden o producto inexistente']);
+            // }
+
+            $orderDetails = Orders_details::updateOrcreate([
+                'precio_unitario' => $request->precio_unitario,
+                'cantidad' => $request->cantidad,
+                'producto_id' => $request->producto_id,
+                'order_id' => $request->order_id,
+            ]);
+
+            DB::commit();
+
+            return response()->json(['message' => 'Detalle de orden creado correctamente'], 201);
+
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json(['error' => 'Error al crear el detalle de orden: ' . $e->getMessage()], 500);
