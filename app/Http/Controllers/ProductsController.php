@@ -13,7 +13,13 @@ class ProductsController extends Controller
     // GET - Obtenemos todos los registros de la base de datos
     public function get()
     {
-        $products = Products::with('categories','suppliers')->get();
+        $products = Products::with('categories', 'suppliers')->get();
+        return response()->json($products);
+    }
+
+    public function getByCateogry($id)
+    {
+        $products = Products::where('categoria_id', $id)->get();
         return response()->json($products);
     }
 
@@ -27,8 +33,12 @@ class ProductsController extends Controller
             $categoria_id =  $request->categoria_id;
             $supplier_id = $request->supplier_id;
 
-            $categoria = Categories::where('id',$categoria_id)->first();
-            $supplier = Suppliers::where('id',$supplier_id)->first();
+            $categoria = Categories::where('id', $categoria_id)->first();
+            $supplier = Suppliers::where('id', $supplier_id)->first();
+
+            if (!$categoria || !$supplier) {
+                return response()->json(['error' => 'Category o supplier no existen'], 404);
+            }
 
             $products = Products::updateOrcreate([
                 'nombre_producto' => $request->nombre_producto,
@@ -43,12 +53,40 @@ class ProductsController extends Controller
 
             DB::commit();
             return response()->json(["resp" => "Producto Creado Correctamente"], 200);
-
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json(['error' => 'Error al crear el producto: ' . $e->getMessage()], 500);
         }
+    }
 
+    public function uploadImageProducto(Request $request, $idProducto)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            $product = Products::find($idProducto);
+
+            if (!$product) {
+                return response()->json(['error' => 'Product not found'], 404);
+            }
+
+            if ($request->hasFile('imagen_producto')) {
+                $uploadedFile = $request->file('imagen_producto');
+                $originalFilename = $uploadedFile->getClientOriginalName();
+                $imagePath = $uploadedFile->storeAs('products', $originalFilename, 'public');
+                $product->photo_path = 'storage/' . $imagePath;
+                $product->save();
+            }
+
+            DB::commit();
+            $imageUrl = asset($product->photo_path);
+            return response()->json(["resp" => "Imagen asignada al producto", "image_url" => $imageUrl], 200);
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            return response()->json(['error' => 'Error al crear el producto: ' . $e->getMessage()], 500);
+        }
     }
 
     // PUT - Actualizar datos

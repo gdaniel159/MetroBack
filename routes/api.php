@@ -91,9 +91,11 @@ Route::delete('suppliers/delete/{id}', [SuppliersController::class, 'delete']);
 
 // Rutas para ProductsController
 Route::get('products/get', [ProductsController::class, 'get']);
+Route::get('products/get/category/{id}',[ProductsController::class, 'getByCateogry']);
 Route::post('products/create', [ProductsController::class, 'store']);
 Route::put('products/update/{id}', [ProductsController::class, 'update']);
 Route::delete('products/delete/{id}', [ProductsController::class, 'delete']);
+Route::post('products/upload_image/{id}', [ProductsController::class, 'uploadImageProducto']);
 
 
 // Rutas para OrdersController

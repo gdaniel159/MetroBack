@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('unidades_stock')->nullable();
             $table->string('unidades_orden')->nullable();
             $table->string('reorden_nivel')->nullable();
+            $table->string('photo_path')->nullable();
             $table->char('estado')->default(1);
             $table->timestamps();
 
