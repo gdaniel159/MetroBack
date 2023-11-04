@@ -25,8 +25,8 @@ class OrdersController extends Controller
 
         try {
 
-            $customer = Customers::find($request->customer_id);
-            $employee = Employees::find($request->employee_id);
+            // $customer = Customers::find($request->customer_id);
+            // $employee = Employees::find($request->employee_id);
 
             $orders = Orders::updateOrcreate([
                 'fecha_orden' => $request->fecha_orden,
@@ -38,8 +38,8 @@ class OrdersController extends Controller
                 'envio_direccion' => $request->envio_direccion,
                 'envio_codigo_postal' => $request->envio_codigo_postal,
                 'envio_pais' => $request->envio_pais,
-                'customer_id' => $customer->id,
-                'employee_id' => $employee->id,
+                'customers_id' => null,
+                'employee_id' => null,
             ]);
 
             DB::commit();
